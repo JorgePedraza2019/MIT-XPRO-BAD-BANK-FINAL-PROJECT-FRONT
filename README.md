@@ -75,6 +75,9 @@ Some features to add in the future would be to put withdraw limits per day and a
 ## Roadmap of future improvements:
 The future improvements to apply in this project is to build more API endpoints.
 
+## Notes:
+- The project was created with node 21.5.0
+
 ## License information:
 MIT License
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
