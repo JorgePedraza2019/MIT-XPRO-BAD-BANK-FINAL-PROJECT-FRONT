@@ -22,7 +22,6 @@ const AuthLayout = ({ children }) => {
           _id: decodedToken.id,
           name: decodedToken.name,
           email: decodedToken.email,
-          password: decodedToken.password,
           balance: decodedToken.balance,
           role: decodedToken.role
         };
