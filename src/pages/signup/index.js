@@ -13,7 +13,7 @@ export default function SignUp() {
       {/* Render the form inside a Card component */}
       <br />
       <h4 style={{ paddingLeft: "20px", paddingTop: "20px" }}>
-        CREATE ACCOUNT
+        CREATE ACCOUNT PAGE
       </h4>
       <Card
         className="card text-center"
