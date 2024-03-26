@@ -1,23 +1,23 @@
-# Usa una imagen base con Node.js 18
+# Uses a base image with Node.js 18
 FROM node:18-alpine
 
-# Establece el directorio de trabajo dentro del contenedor
+# Sets the working directory inside the container
 WORKDIR /app
 
-# Copia el package.json y package-lock.json a la carpeta de trabajo
+# Copies package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Instala las dependencias
+# Installs dependencies
 RUN npm install
 
-# Copia los archivos de la aplicación al contenedor
+# Copies application files to the container
 COPY . .
 
-# Construye la aplicación
+# Builds the application
 RUN npm run build
 
-# Expone el puerto en el que se ejecuta la aplicación
+# Exposes the port on which the application runs
 EXPOSE 3000
 
-# Inicia la aplicación
+# Starts the application
 CMD ["npm", "start"]

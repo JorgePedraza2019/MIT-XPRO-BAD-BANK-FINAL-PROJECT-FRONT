@@ -100,7 +100,7 @@ function LoginForm(props) {
         onClick={handle}
         disabled={!email || !password} // Disable button if email or password is empty
       >
-        LOGIN
+        LOGIN PAGE
       </button>
     </>
   );
