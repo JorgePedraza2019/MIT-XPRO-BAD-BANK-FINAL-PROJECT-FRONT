@@ -239,8 +239,8 @@ function DepositForm(props) {
           disabled={
             !amount ||
             (currentUser?.role === "admin" && !email) ||
-            (!forMeRadio?.checked && !forOthersRadio?.checked) ||
-            !email.trim()
+            !email.trim() ||
+            (!currentUser?.email && email !== currentUser?.email)
           }
         >
           DEPOSIT
