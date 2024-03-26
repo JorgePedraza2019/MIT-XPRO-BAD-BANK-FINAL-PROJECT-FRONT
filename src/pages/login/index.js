@@ -60,7 +60,15 @@ function LoginForm(props) {
       props.setShow(false);
     } catch (error) {
       // Display error message if login fails
-      props.setStatus(alert(error.message));
+      if (error.message == "Error logging in") {
+        props.setStatus(
+          alert(
+            "Error logging in. User not found, please signup or validate user credentials"
+          )
+        );
+      } else {
+        props.setStatus(alert(error.message));
+      }
       console.log("Error logging in:", error.message);
     }
   };
