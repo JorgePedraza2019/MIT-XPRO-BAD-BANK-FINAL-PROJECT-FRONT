@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"; // Importing useRouter from Next.js for routing
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../contexts/UserContextProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +15,7 @@ export default function AllData() {
   const indexOfFirstRow = indexOfLastRow - rowsPerPage; // Calculate index of first row
   const currentRows = data.slice(indexOfFirstRow, indexOfLastRow); // Get current rows based on pagination
   const [filterValue, setFilterValue] = useState(""); // State for the name filter
+  const router = useRouter(); // Accessing useRouter for routing
 
   // Function to handle the change in the number of rows per page
   const handleRowsPerPageChange = (e) => {
@@ -54,7 +56,9 @@ export default function AllData() {
       }
       fetchData();
     }
-  }, [currentUser]);
+    if (typeof window !== "undefined" && !localStorage.getItem("token"))
+    router.push("/");
+}, [currentUser, router]);
 
   return (
     <>
