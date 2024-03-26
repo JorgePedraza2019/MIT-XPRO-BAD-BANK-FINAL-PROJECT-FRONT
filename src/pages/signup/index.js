@@ -102,7 +102,11 @@ function CreateForm({ setShow, setStatus }) {
 
     const hashedPassword = crypto.SHA256(password).toString(); // Hash the password
 
-    const url = `http://localhost:3001/account/create/${name}/${email}/${hashedPassword}`;
+    // Local mode
+    // const url = `http://localhost:3001/account/create/${name}/${email}/${hashedPassword}`;
+
+    // Server mode
+    const url = `http://35.168.60.156:80/account/create/${name}/${email}/${hashedPassword}`;
     try {
       const res = await fetch(url);
       const data = await res.json();

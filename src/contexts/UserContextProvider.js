@@ -18,9 +18,15 @@ const UserContextProvider = ({ children }) => {
   const loginUser = async (email, password) => {
     try {
       const hashedPassword = hashPassword(password);
+      // Local mode
+      // const response = await fetch(
+      //   `http://localhost:3001/account/login/${email}/${hashedPassword}`
+      // );
+      
+      // Server mode
       const response = await fetch(
-        `http://localhost:3001/account/login/${email}/${hashedPassword}`
-      );
+         `http://35.168.60.156:80/account/login/${email}/${hashedPassword}`
+       );
       const text = await response.text();
       if (response.ok) {
         const data = JSON.parse(text);
@@ -56,7 +62,9 @@ const UserContextProvider = ({ children }) => {
 
   // Provide the UserContext to child components
   return (
-    <UserContext.Provider value={{ loginUser, logoutUser, currentUser, setCurrentUser, isLoggedIn }}>
+    <UserContext.Provider
+      value={{ loginUser, logoutUser, currentUser, setCurrentUser, isLoggedIn }}
+    >
       {children}
     </UserContext.Provider>
   );

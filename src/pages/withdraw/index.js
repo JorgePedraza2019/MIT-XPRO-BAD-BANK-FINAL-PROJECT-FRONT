@@ -64,8 +64,16 @@ function WithdrawForm(props) {
       return;
     }
 
+    // Local mode
+    // fetch(
+    //   `http://localhost:3001/account/update/${email}/-${amount}/${
+    //     email === currentUser.email
+    //   }`
+    // )
+
+    // Server mode
     fetch(
-      `http://localhost:3001/account/update/${email}/-${amount}/${
+      `http://35.168.60.156:80/account/update/${email}/-${amount}/${
         email === currentUser.email
       }`
     )

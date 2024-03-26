@@ -59,9 +59,13 @@ function BalanceForm(props) {
 
   // Function to handle balance check
   function handle(email) {
-    fetch(`http://localhost:3001/account/findOne/${email}`)
-    .then((response) => response.text())
-    .then((text) => {
+    // Local mode
+    //fetch(`http://localhost:3001/account/findOne/${email}`)
+
+    // Server mode
+    fetch(`http://35.168.60.156:80/account/findOne/${email}`)
+      .then((response) => response.text())
+      .then((text) => {
         try {
           const user = JSON.parse(text);
           props.setStatus(`BALANCE: ${user.balance}`); // Set balance status
@@ -98,7 +102,11 @@ function BalanceForm(props) {
       <br />
       <div className="col" style={{ textAlign: "center" }}>
         {/* Button to check balance */}
-        <button type="submit" className="btn btn-light" onClick={() => handle(email)}>
+        <button
+          type="submit"
+          className="btn btn-light"
+          onClick={() => handle(email)}
+        >
           CHECK BALANCE
         </button>
       </div>

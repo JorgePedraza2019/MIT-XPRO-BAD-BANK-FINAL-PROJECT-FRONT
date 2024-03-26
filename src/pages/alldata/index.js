@@ -43,7 +43,11 @@ export default function AllData() {
       currentUser.role !== "customer"
     ) {
       async function fetchData() {
-        const response = await fetch("http://localhost:3001/account/all");
+        // Local mode
+        // const response = await fetch("http://localhost:3001/account/all");
+
+        // Server mode
+        const response = await fetch("http://35.168.60.156:80/account/all");
         const newData = await response.json();
         setData(newData);
         setPasswordVisible(newData.map(() => false)); // Initialize password visibility state
@@ -78,32 +82,31 @@ export default function AllData() {
           </thead>
           <tbody>
             {/* Render table rows */}
-            {filteredData.slice(
-              indexOfFirstRow,
-              indexOfFirstRow + rowsPerPage
-            ).map((obj, index) => (
-              <tr key={obj.email}>
-                <th>{indexOfFirstRow + index + 1}</th>
-                <td>{obj.email}</td>
-                <td>{obj.name}</td>
-                <td style={{ minWidth: "650px" }}>
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    {/* Icon to toggle password visibility */}
-                    <span
-                      style={{ marginRight: "5px", cursor: "pointer" }}
-                      onClick={() => handlePasswordVisibility(index)}
-                    >
-                      <FontAwesomeIcon
-                        icon={passwordVisible[index] ? faEyeSlash : faEye}
-                      />
-                    </span>
-                    {/* Show password or mask it */}
-                    {passwordVisible[index] ? obj.password : "*****"}
-                  </div>
-                </td>
-                <td>{obj.balance}</td>
-              </tr>
-            ))}
+            {filteredData
+              .slice(indexOfFirstRow, indexOfFirstRow + rowsPerPage)
+              .map((obj, index) => (
+                <tr key={obj.email}>
+                  <th>{indexOfFirstRow + index + 1}</th>
+                  <td>{obj.email}</td>
+                  <td>{obj.name}</td>
+                  <td style={{ minWidth: "650px" }}>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      {/* Icon to toggle password visibility */}
+                      <span
+                        style={{ marginRight: "5px", cursor: "pointer" }}
+                        onClick={() => handlePasswordVisibility(index)}
+                      >
+                        <FontAwesomeIcon
+                          icon={passwordVisible[index] ? faEyeSlash : faEye}
+                        />
+                      </span>
+                      {/* Show password or mask it */}
+                      {passwordVisible[index] ? obj.password : "*****"}
+                    </div>
+                  </td>
+                  <td>{obj.balance}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
         {/* Pagination component */}
